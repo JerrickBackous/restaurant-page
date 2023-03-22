@@ -5,155 +5,228 @@ import Icon from "./icon.png";
 const myIcon = new Image();
 myIcon.src = Icon;
 
-// Create main containers
-const container = document.getElementById("content");
+(() => {
+  "use strict";
+  const contactOwner = {
+      name: "Jerrick Backous",
+      phone: "763-843-4185",
+      location: "My house"
+    };
 
-const header = document.createElement("div");
-header.classList.add("header");
+  const menuItems = [
+    {
+      item: "Salsiccia",
+      description:
+        "Tomato sauce, Mozarella, Tomato, Homemade sausage, Garlic, Basil",
+    },
+    {
+      item: "Gamberi",
+      description:
+        "Tomato sauce, Mozarella, Shrimps, Feta cheese, Olives, Basil",
+    },
+    {
+      item: "Pepe",
+      description: "Tomato sauce, Mozarella, Chilli flakes, Olives, Basil",
+    },
+    {
+      item: "Disgustoso",
+      description: "Tomato sauce, Bacon, Pineapple, Olives, Basil",
+    },
+  ];
 
-container.appendChild(header);
+  // Create main containers
+  const container = document.getElementById("content");
 
-const main = document.createElement("div");
-main.classList.add("main");
+  const header = document.createElement("div");
+  header.classList.add("header");
 
-container.appendChild(main);
+  container.appendChild(header);
 
-const footer = document.createElement("div");
-footer.classList.add("footer");
+  const main = document.createElement("div");
+  main.classList.add("main");
 
-container.appendChild(footer);
+  container.appendChild(main);
 
-// Create header
-const name = document.createElement("h1");
-name.classList.add("name");
-name.textContent = "Beautizza";
+  const footer = document.createElement("div");
+  footer.classList.add("footer");
 
-header.appendChild(name);
+  container.appendChild(footer);
 
-const listHeader = document.createElement("ul");
-listHeader.classList.add("navButtons");
-const listOne = document.createElement("li");
-const listItemOne = document.createElement("a");
-listItemOne.href = "#";
-listItemOne.textContent = "Home";
-const listTwo = document.createElement("li");
-const listItemTwo = document.createElement("a");
-listItemTwo.href = "#";
-listItemTwo.textContent = "Menu";
-const listThree = document.createElement("li");
-const listItemThree = document.createElement("a");
-listItemThree.href = "#";
-listItemThree.textContent = "Contact";
+  // Create header
+  const name = document.createElement("h1");
+  name.classList.add("name");
+  name.textContent = "Beautizza";
 
-header.appendChild(listHeader);
-listHeader.appendChild(listOne);
-listHeader.appendChild(listTwo);
-listHeader.appendChild(listThree);
-listOne.appendChild(listItemOne);
-listTwo.appendChild(listItemTwo);
-listThree.appendChild(listItemThree);
+  header.appendChild(name);
 
-// Create main content for Home
-const goHome = function () {
-  const mainBack = document.createElement("div");
-  mainBack.classList.add("main-background");
-  mainBack.classList.add("active");
+  const listHeader = document.createElement("ul");
+  listHeader.classList.add("navButtons");
+  const listOne = document.createElement("li");
+  const listItemOne = document.createElement("button");
+  listItemOne.classList.add("home-btn");
+  listItemOne.textContent = "Home";
+  const listTwo = document.createElement("li");
+  const listItemTwo = document.createElement("button");
+  listItemTwo.classList.add("menu-btn");
+  listItemTwo.textContent = "Menu";
+  const listThree = document.createElement("li");
+  const listItemThree = document.createElement("button");
+  listItemThree.classList.add("contact-btn");
+  listItemThree.textContent = "Contact";
 
-  main.appendChild(mainBack);
+  header.appendChild(listHeader);
+  listHeader.appendChild(listOne);
+  listHeader.appendChild(listTwo);
+  listHeader.appendChild(listThree);
+  listOne.appendChild(listItemOne);
+  listTwo.appendChild(listItemTwo);
+  listThree.appendChild(listItemThree);
 
-  const mainContent = document.createElement("h3");
-  mainContent.classList.add("main-content");
-  mainContent.classList.add("active");
+  function handleClick(event) {
+    if (event.target.classList == "home-btn") {
+      goHome();
+      console.log(`Button ${event.target.classList} clicked!`);
+    } else if (event.target.classList == "menu-btn") {
+      goToMenu();
+      console.log(`Button ${event.target.classList} clicked!`);
+    } else if (event.target.classList == "contact-btn") {
+      goToContact();
+      console.log(`Button ${event.target.classList} clicked!`);
+    }
+  }
 
-  mainBack.appendChild(mainContent);
+  listItemOne.addEventListener("click", handleClick);
+  listItemTwo.addEventListener("click", handleClick);
+  listItemThree.addEventListener("click", handleClick);
 
-  const introContent = document.createElement("p");
-  introContent.classList.add("intro");
-  introContent.classList.add("active");
-  introContent.textContent = "Best pizza in the country";
+  // Create main content for Home
+  const goHome = function () {
+    const activeElements = document.querySelectorAll(".active");
+    activeElements.forEach((element) => {
+      element.remove();
+    });
 
-  mainContent.appendChild(introContent);
+    const mainBack = document.createElement("div");
+    mainBack.classList.add("main-background");
+    mainBack.classList.add("active");
 
-  const introImage = document.createElement("img");
-  introImage.classList.add("face");
-  introImage.classList.add("active");
-  introImage.src = myIcon.src;
+    main.appendChild(mainBack);
 
-  mainContent.appendChild(introImage);
+    const mainContent = document.createElement("h3");
+    mainContent.classList.add("main-content");
+    mainContent.classList.add("active");
 
-  const orderContent = document.createElement("p");
-  orderContent.classList.add("outro");
-  orderContent.classList.add("active");
-  orderContent.textContent = "Order online or visit us!";
+    mainBack.appendChild(mainContent);
 
-  mainContent.appendChild(orderContent);
-};
+    const introContent = document.createElement("p");
+    introContent.classList.add("intro");
+    introContent.classList.add("active");
+    introContent.textContent = "Best pizza in the country";
 
-goHome();
+    mainContent.appendChild(introContent);
 
-const goToMenu = function () {
-  const mainBack = document.createElement("div");
-  mainBack.classList.add("main-background");
+    const introImage = document.createElement("img");
+    introImage.classList.add("face");
+    introImage.classList.add("active");
+    introImage.src = myIcon.src;
 
-  main.appendChild(mainBack);
+    mainContent.appendChild(introImage);
 
-  const mainContent = document.createElement("h3");
-  mainContent.classList.add("main-content");
+    const orderContent = document.createElement("p");
+    orderContent.classList.add("outro");
+    orderContent.classList.add("active");
+    orderContent.textContent = "Order online or visit us!";
 
-  mainBack.appendChild(mainContent);
+    mainContent.appendChild(orderContent);
+  };
 
-  const introContent = document.createElement("p");
-  introContent.classList.add("intro");
-  introContent.textContent = "Best pizza in the country";
+  goHome();
 
-  mainContent.appendChild(introContent);
+  const menuItem = (i) => {
+    const bucket = document.createElement("div");
+    const item = document.createElement("h2");
+    item.classList.add("item");
+    item.textContent = `${i.item}`;
+    const description = document.createElement("h2");
+    description.classList.add("description");
+    description.textContent = `${i.description}`;
 
-  const introImage = document.createElement("img");
-  introImage.classList.add("face");
-  introImage.src = myIcon.src;
+    bucket.appendChild(item);
+    bucket.appendChild(description);
+    menuBack.appendChild(bucket);
+    console.log(`${i.item}`);
+  };
 
-  mainContent.appendChild(introImage);
+  const goToMenu = function () {
+    const activeElements = document.querySelectorAll(".active");
+    activeElements.forEach((element) => {
+      element.remove();
+    });
 
-  const orderContent = document.createElement("p");
-  orderContent.classList.add("outro");
-  orderContent.textContent = "Order online or visit us!";
+    const menuBack = document.createElement("div");
+    menuBack.classList.add("menu-background");
+    menuBack.classList.add("active");
 
-  mainContent.appendChild(orderContent);
-};
+    main.appendChild(menuBack);
 
-const goToContact = function () {
-  const mainBack = document.createElement("div");
-  mainBack.classList.add("main-background");
+    menuItems.forEach((element) => {
+      const bucket = document.createElement("div");
+      bucket.classList.add("item-container");
+      const item = document.createElement("h2");
+      item.classList.add("item");
+      item.textContent = `${element.item}`;
+      const description = document.createElement("h2");
+      description.classList.add("description");
+      description.textContent = `${element.description}`;
 
-  main.appendChild(mainBack);
+      bucket.appendChild(item);
+      bucket.appendChild(description);
+      menuBack.appendChild(bucket);
+    });
+  };
 
-  const mainContent = document.createElement("h3");
-  mainContent.classList.add("main-content");
+  const goToContact = function () {
+    const activeElements = document.querySelectorAll(".active");
+    activeElements.forEach((element) => {
+      element.remove();
+    });
 
-  mainBack.appendChild(mainContent);
+    const contBack = document.createElement("div");
+    contBack.classList.add("contact-background");
+    contBack.classList.add("active");
 
-  const introContent = document.createElement("p");
-  introContent.classList.add("intro");
-  introContent.textContent = "Best pizza in the country";
+    main.appendChild(contBack);
 
-  mainContent.appendChild(introContent);
+    const contHeader = document.createElement("h3");
+    contHeader.classList.add("contact-header");
+    contHeader.textContent = "Contact"
 
-  const introImage = document.createElement("img");
-  introImage.classList.add("face");
-  introImage.src = myIcon.src;
+    contBack.appendChild(contHeader);
 
-  mainContent.appendChild(introImage);
+    const name = document.createElement("p");
+    name.classList.add("owner");
+    name.textContent = `Name: ${contactOwner.name}`;
 
-  const orderContent = document.createElement("p");
-  orderContent.classList.add("outro");
-  orderContent.textContent = "Order online or visit us!";
+    contBack.appendChild(name);
 
-  mainContent.appendChild(orderContent);
-};
+    const phone = document.createElement("p");
+    phone.classList.add("phone");
+    phone.textContent = `Phone: ${contactOwner.phone}`;
 
-// Create footer
-const footText = document.createElement("p");
-footText.classList.add("footer-text");
-footText.textContent = "Copyright © 2023 JerrickBackous";
+    contBack.appendChild(phone);
 
-footer.appendChild(footText);
+    const address = document.createElement("p");
+    address.classList.add("address");
+    address.textContent = `Address: ${contactOwner.location}`;
+
+    contBack.appendChild(address);
+
+  };
+
+  // Create footer
+  const footText = document.createElement("p");
+  footText.classList.add("footer-text");
+  footText.textContent = "Copyright © 2023 JerrickBackous";
+
+  footer.appendChild(footText);
+})();

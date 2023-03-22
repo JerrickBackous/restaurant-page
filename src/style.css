@@ -41,20 +41,19 @@
     color: white;
 }
 
-.navButtons li a{
+.navButtons li button{
     color: white;
+    background-color: transparent;
     text-decoration: none;
     align-self: center;
     font-size: large;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
+    border: none;
+    height: 4rem;
+    width: 6rem;
 }
 
-.navButtons li a:hover {
-    background-color: #111;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+.navButtons li button:hover {
+    background-color: black;
   }
 
 .main {
@@ -62,7 +61,7 @@
     grid-row: 3/12;
     grid-column: 1/13;
     display: grid;
-    grid-template-columns: 1fr minmax(300px, 100%) 1fr;
+    grid-template-columns: 1fr minmax(300px, 800px) 1fr;
     grid-template-rows: 1fr 2fr 1fr;
 }
 
@@ -83,6 +82,34 @@
 .face {
     height: 20vh;
 }
+
+.menu-background {
+    background-color: rgba(0, 0, 0, 0.7);
+    grid-row: 2/3;
+    grid-column: 2/3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.item-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.contact-background {
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 40vh;
+    grid-row: 2/3;
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
 
 .footer {
     background-color: rgba(0, 0, 0, 0.7);
